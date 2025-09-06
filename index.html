@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>114學年度上學期二年級國語南一版 - 第二課爬梯子</title>
+    <title>第二課：爬梯子 - 字音字形重點整理</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,7 +14,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
             color: #333;
             line-height: 1.6;
             padding: 20px;
@@ -28,6 +28,38 @@
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quick-nav {
+            position: sticky;
+            top: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 100;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            padding: 8px 15px;
+            background: linear-gradient(to right, #4CAF50, #2E7D32);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            background: linear-gradient(to right, #2E7D32, #1B5E20);
         }
         
         header {
@@ -52,6 +84,7 @@
             margin: 25px 0 15px;
             padding-bottom: 10px;
             border-bottom: 2px solid #C8E6C9;
+            scroll-margin-top: 100px;
         }
         
         h3 {
@@ -98,10 +131,11 @@
             overflow: hidden;
         }
         
-        .vocabulary-item:hover {
+        .vocabulary-item:hover, .vocabulary-item.active {
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0,0,0,0.15);
             background: linear-gradient(to bottom, #C8E6C9, #A5D6A7);
+            border-color: #4CAF50;
         }
         
         .vocabulary-item .bopomofo-small {
@@ -111,7 +145,7 @@
             margin-top: 5px;
         }
         
-        .similar-characters, .polyphonic-characters, .homophones {
+        .similar-characters, .polyphonic-characters {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
@@ -124,6 +158,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.08);
             transition: transform 0.3s;
+            cursor: pointer;
         }
         
         .character-group:hover {
@@ -142,11 +177,12 @@
         .character-group ul {
             list-style-type: none;
             padding-left: 10px;
+            margin-top: 10px;
+            font-size: 1.1rem;
         }
         
         .character-group li {
             padding: 8px 0;
-            font-size: 1.2rem;
             border-bottom: 1px dashed #C8E6C9;
         }
         
@@ -213,11 +249,13 @@
         .info-section h3 i {
             margin-right: 10px;
             color: #4CAF50;
+            font-size: 1.2rem;
         }
         
         .info-section ul {
             padding-left: 25px;
             margin-top: 15px;
+            list-style-type: none;
         }
         
         .info-section li {
@@ -291,8 +329,47 @@
             font-size: 1.2rem;
         }
         
-        .similar-characters .bopomofo, .polyphonic-characters .bopomofo, .homophones .bopomofo {
+        .similar-characters .bopomofo, .polyphonic-characters .bopomofo {
             font-size: 0.7em;
+        }
+        
+        .vocabulary-recognition {
+            background: #F1F8E9;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .vocabulary-recognition h3 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #2E7D32;
+        }
+        
+        .recognition-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .recognition-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .section-highlight {
+            animation: highlight 2s ease;
+            box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.5);
+        }
+        
+        @keyframes highlight {
+            0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.8); }
+            70% { box-shadow: 0 0 0 20px rgba(76, 175, 80, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
         }
         
         @media (max-width: 900px) {
@@ -311,13 +388,22 @@
                 font-size: 100px;
             }
             
-            .similar-characters, .polyphonic-characters, .homophones {
+            .similar-characters, .polyphonic-characters {
                 grid-template-columns: 1fr;
             }
             
             .external-links {
                 flex-direction: column;
                 align-items: center;
+            }
+            
+            .quick-nav {
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .recognition-list {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
         }
         
@@ -338,177 +424,98 @@
                 font-size: 1.1rem;
                 padding: 15px;
             }
+            
+            .nav-btn {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .recognition-list {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="quick-nav">
+            <button class="nav-btn" onclick="scrollToSection('lesson-content')">課文內容</button>
+            <button class="nav-btn" onclick="scrollToSection('vocabulary')">生字總表</button>
+            <button class="nav-btn" onclick="scrollToSection('similar-characters')">形近字比較</button>
+            <button class="nav-btn" onclick="scrollToSection('polyphonic-characters')">多音字比較</button>
+            <button class="nav-btn" onclick="scrollToSection('vocabulary-phrases')">語詞學習</button>
+        </div>
+        
         <header>
-            <h1><i class="fas fa-book-open"></i> 114學年度上學期二年級國語</h1>
-            <h2>南一版 - 第二課：爬梯子</h2>
+            <h1><i class="fas fa-ladder"></i> 第二課：爬梯子</h1>
+            <h2>字音字形重點整理</h2>
         </header>
         
-        <section>
+        <section id="lesson-content">
             <h2><span class="section-icon">1</span> 課文內容</h2>
             <div class="lesson-content">
-                <p>第<span class="bopomofo">ㄉㄧˋ</span>二<span class="bopomofo">ㄦˋ</span>課<span class="bopomofo">ㄎㄜˋ</span>　爬<span class="bopomofo">ㄆㄚˊ</span>梯<span class="bopomofo">ㄊㄧ</span>子<span class="bopomofo">˙ㄗ</span></p>
                 <p>　　房<span class="bopomofo">ㄈㄤˊ</span>門<span class="bopomofo">ㄇㄣˊ</span>上<span class="bopomofo">ㄕㄤˋ</span>貼<span class="bopomofo">ㄊㄧㄝ</span>了<span class="bopomofo">˙ㄌㄜ</span>一<span class="bopomofo">ㄧ</span>大<span class="bopomofo">ㄉㄚˋ</span>張<span class="bopomofo">ㄓㄤ</span>白<span class="bopomofo">ㄅㄞˊ</span>紙<span class="bopomofo">ㄓˇ</span>，紙<span class="bopomofo">ㄓˇ</span>上<span class="bopomofo">ㄕㄤˋ</span>有<span class="bopomofo">ㄧㄡˇ</span>一<span class="bopomofo">ㄧ</span>條<span class="bopomofo">ㄊㄧㄠˊ</span>又<span class="bopomofo">ㄧㄡˋ</span>一<span class="bopomofo">ㄧ</span>條<span class="bopomofo">ㄊㄧㄠˊ</span>的<span class="bopomofo">˙ㄉㄜ</span>線<span class="bopomofo">ㄒㄧㄢˋ</span>，好<span class="bopomofo">ㄏㄠˇ</span>像<span class="bopomofo">ㄒㄧㄤˋ</span>長<span class="bopomofo">ㄔㄤˊ</span>長<span class="bopomofo">ㄔㄤˊ</span>的<span class="bopomofo">˙ㄉㄜ</span>梯<span class="bopomofo">ㄊㄧ</span>子<span class="bopomofo">˙ㄗ</span>。媽<span class="bopomofo">ㄇㄚ</span>媽<span class="bopomofo">ㄇㄚ</span>說<span class="bopomofo">ㄕㄨㄛ</span>：「這<span class="bopomofo">ㄓㄜˋ</span>是<span class="bopomofo">ㄕˋ</span>我<span class="bopomofo">ㄨㄛˇ</span>們<span class="bopomofo">˙ㄇㄣ</span>家<span class="bopomofo">ㄐㄧㄚ</span>人<span class="bopomofo">ㄖㄣˊ</span>的<span class="bopomofo">˙ㄉㄜ</span>身<span class="bopomofo">ㄕㄣ</span>高<span class="bopomofo">ㄍㄠ</span>線<span class="bopomofo">ㄒㄧㄢˋ</span>。</p>
                 <p>　　生<span class="bopomofo">ㄕㄥ</span>日<span class="bopomofo">ㄖˋ</span>那<span class="bopomofo">ㄋㄚˋ</span>天<span class="bopomofo">ㄊㄧㄢ</span>，我<span class="bopomofo">ㄨㄛˇ</span>迫<span class="bopomofo">ㄆㄛˋ</span>不<span class="bopomofo">ㄅㄨˋ</span>及<span class="bopomofo">ㄐㄧˊ</span>待<span class="bopomofo">ㄉㄞˋ</span>的<span class="bopomofo">˙ㄉㄜ</span>站<span class="bopomofo">ㄓㄢˋ</span>在<span class="bopomofo">ㄗㄞˋ</span>身<span class="bopomofo">ㄕㄣ</span>高<span class="bopomofo">ㄍㄠ</span>線<span class="bopomofo">ㄒㄧㄢˋ</span>前<span class="bopomofo">ㄑㄧㄢˊ</span>面<span class="bopomofo">ㄇㄧㄢˋ</span>，爸<span class="bopomofo">ㄅㄚˋ</span>爸<span class="bopomofo">ㄅㄚˋ</span>沿<span class="bopomofo">ㄧㄢˊ</span>著<span class="bopomofo">˙ㄓㄜ</span>我<span class="bopomofo">ㄨㄛˇ</span>的<span class="bopomofo">˙ㄉㄜ</span>頭<span class="bopomofo">ㄊㄡˊ</span>頂<span class="bopomofo">ㄉㄧㄥˇ</span>，在<span class="bopomofo">ㄗㄞˋ</span>紙<span class="bopomofo">ㄓˇ</span>上<span class="bopomofo">ㄕㄤˋ</span>畫<span class="bopomofo">ㄏㄨㄚˋ</span>一<span class="bopomofo">ㄧ</span>條<span class="bopomofo">ㄊㄧㄠˊ</span>線<span class="bopomofo">ㄒㄧㄢˋ</span>，開<span class="bopomofo">ㄎㄞ</span>心<span class="bopomofo">ㄒㄧㄣ</span>的<span class="bopomofo">˙ㄉㄜ</span>說<span class="bopomofo">ㄕㄨㄛ</span>：「你<span class="bopomofo">ㄋㄧˇ</span>又<span class="bopomofo">ㄧㄡˋ</span>長<span class="bopomofo">ㄓㄤˇ</span>高<span class="bopomofo">ㄍㄠ</span>了<span class="bopomofo">˙ㄌㄜ</span>！」</p>
                 <p>　　太<span class="bopomofo">ㄊㄞˋ</span>好<span class="bopomofo">ㄏㄠˇ</span>了<span class="bopomofo">˙ㄌㄜ</span>！我<span class="bopomofo">ㄨㄛˇ</span>又<span class="bopomofo">ㄧㄡˋ</span>向<span class="bopomofo">ㄒㄧㄤˋ</span>上<span class="bopomofo">ㄕㄤˋ</span>爬<span class="bopomofo">ㄆㄚˊ</span>了<span class="bopomofo">˙ㄌㄜ</span>一<span class="bopomofo">ㄧ</span>格<span class="bopomofo">ㄍㄜˊ</span>，不<span class="bopomofo">ㄅㄨˋ</span>知<span class="bopomofo">ㄓ</span>道<span class="bopomofo">ㄉㄠˋ</span>哪<span class="bopomofo">ㄋㄚˇ</span>一<span class="bopomofo">ㄧ</span>天<span class="bopomofo">ㄊㄧㄢ</span>我<span class="bopomofo">ㄨㄛˇ</span>才<span class="bopomofo">ㄘㄞˊ</span>會<span class="bopomofo">ㄏㄨㄟˋ</span>爬<span class="bopomofo">ㄆㄚˊ</span>到<span class="bopomofo">ㄉㄠˋ</span>最<span class="bopomofo">ㄗㄨㄟˋ</span>高<span class="bopomofo">ㄍㄠ</span>呢<span class="bopomofo">˙ㄋㄜ</span>？</p>
             </div>
         </section>
         
-        <section>
+        <section id="vocabulary">
             <h2><span class="section-icon">2</span> 生字總表</h2>
             <div class="vocabulary-list">
-                <div class="vocabulary-item" onclick="showCharacterDetail('爬', 'ㄆㄚˊ', '爪', 8, '半包圍結構')">
+                <div class="vocabulary-item" data-char="爬" data-bopomofo="ㄆㄚˊ" data-radical="爪" data-strokes="8" data-structure="左右結構">
                     爬 <span class="bopomofo-small">ㄆㄚˊ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('梯', 'ㄊㄧ', '木', 11, '左右結構')">
+                <div class="vocabulary-item" data-char="梯" data-bopomofo="ㄊㄧ" data-radical="木" data-strokes="11" data-structure="左右結構">
                     梯 <span class="bopomofo-small">ㄊㄧ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('紙', 'ㄓˇ', '糸', 10, '左右結構')">
+                <div class="vocabulary-item" data-char="紙" data-bopomofo="ㄓˇ" data-radical="糸" data-strokes="10" data-structure="左右結構">
                     紙 <span class="bopomofo-small">ㄓˇ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('條', 'ㄊㄧㄠˊ', '木', 11, '上下結構')">
+                <div class="vocabulary-item" data-char="條" data-bopomofo="ㄊㄧㄠˊ" data-radical="木" data-strokes="11" data-structure="上下結構">
                     條 <span class="bopomofo-small">ㄊㄧㄠˊ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('線', 'ㄒㄧㄢˋ', '糸', 15, '左右結構')">
+                <div class="vocabulary-item" data-char="線" data-bopomofo="ㄒㄧㄢˋ" data-radical="糸" data-strokes="15" data-structure="左右結構">
                     線 <span class="bopomofo-small">ㄒㄧㄢˋ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('像', 'ㄒㄧㄤˋ', '人', 13, '左右結構')">
+                <div class="vocabulary-item" data-char="像" data-bopomofo="ㄒㄧㄤˋ" data-radical="人" data-strokes="13" data-structure="左右結構">
                     像 <span class="bopomofo-small">ㄒㄧㄤˋ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('身', 'ㄕㄣ', '身', 7, '獨體字')">
+                <div class="vocabulary-item" data-char="身" data-bopomofo="ㄕㄣ" data-radical="身" data-strokes="7" data-structure="獨體結構">
                     身 <span class="bopomofo-small">ㄕㄣ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('生', 'ㄕㄥ', '生', 5, '獨體字')">
+                <div class="vocabulary-item" data-char="生" data-bopomofo="ㄕㄥ" data-radical="生" data-strokes="5" data-structure="獨體結構">
                     生 <span class="bopomofo-small">ㄕㄥ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('迫', 'ㄆㄛˋ', '辵', 8, '半包圍結構')">
+                <div class="vocabulary-item" data-char="迫" data-bopomofo="ㄆㄛˋ" data-radical="辵" data-strokes="8" data-structure="半包圍結構">
                     迫 <span class="bopomofo-small">ㄆㄛˋ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('及', 'ㄐㄧˊ', '又', 3, '獨體字')">
+                <div class="vocabulary-item" data-char="及" data-bopomofo="ㄐㄧˊ" data-radical="又" data-strokes="3" data-structure="獨體結構">
                     及 <span class="bopomofo-small">ㄐㄧˊ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('待', 'ㄉㄞˋ', '彳', 9, '左右結構')">
+                <div class="vocabulary-item" data-char="待" data-bopomofo="ㄉㄞˋ" data-radical="彳" data-strokes="9" data-structure="左右結構">
                     待 <span class="bopomofo-small">ㄉㄞˋ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('站', 'ㄓㄢˋ', '立', 10, '左右結構')">
+                <div class="vocabulary-item" data-char="站" data-bopomofo="ㄓㄢˋ" data-radical="立" data-strokes="10" data-structure="左右結構">
                     站 <span class="bopomofo-small">ㄓㄢˋ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('沿', 'ㄧㄢˊ', '水', 8, '左右結構')">
+                <div class="vocabulary-item" data-char="沿" data-bopomofo="ㄧㄢˊ" data-radical="水" data-strokes="8" data-structure="左右結構">
                     沿 <span class="bopomofo-small">ㄧㄢˊ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('頂', 'ㄉㄧㄥˇ', '頁', 11, '左右結構')">
+                <div class="vocabulary-item" data-char="頂" data-bopomofo="ㄉㄧㄥˇ" data-radical="頁" data-strokes="11" data-structure="左右結構">
                     頂 <span class="bopomofo-small">ㄉㄧㄥˇ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('格', 'ㄍㄜˊ', '木', 10, '左右結構')">
+                <div class="vocabulary-item" data-char="格" data-bopomofo="ㄍㄜˊ" data-radical="木" data-strokes="10" data-structure="左右結構">
                     格 <span class="bopomofo-small">ㄍㄜˊ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('哪', 'ㄋㄚˇ', '口', 9, '左右結構')">
+                <div class="vocabulary-item" data-char="哪" data-bopomofo="ㄋㄚˇ" data-radical="口" data-strokes="10" data-structure="左右結構">
                     哪 <span class="bopomofo-small">ㄋㄚˇ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('才', 'ㄘㄞˊ', '手', 3, '獨體字')">
+                <div class="vocabulary-item" data-char="才" data-bopomofo="ㄘㄞˊ" data-radical="手" data-strokes="3" data-structure="獨體結構">
                     才 <span class="bopomofo-small">ㄘㄞˊ</span>
                 </div>
-                <div class="vocabulary-item" onclick="showCharacterDetail('最', 'ㄗㄨㄟˋ', '曰', 12, '上下結構')">
+                <div class="vocabulary-item" data-char="最" data-bopomofo="ㄗㄨㄟˋ" data-radical="曰" data-strokes="12" data-structure="上下結構">
                     最 <span class="bopomofo-small">ㄗㄨㄟˋ</span>
-                </div>
-            </div>
-        </section>
-        
-        <section>
-            <h2><span class="section-icon">3</span> 形近字比較</h2>
-            <div class="similar-characters">
-                <div class="character-group">
-                    <h3><i class="fas fa-exchange-alt"></i> 梯 <span class="bopomofo">ㄊㄧ</span> vs 第 <span class="bopomofo">ㄉㄧˋ</span></h3>
-                    <ul>
-                        <li>梯：樓梯、階梯、梯子</li>
-                        <li>第：第二、第幾、次第</li>
-                    </ul>
-                </div>
-                
-                <div class="character-group">
-                    <h3><i class="fas fa-exchange-alt"></i> 身 <span class="bopomofo">ㄕㄣ</span> vs 生 <span class="bopomofo">ㄕㄥ</span></h3>
-                    <ul>
-                        <li>身：身材、身體、身份</li>
-                        <li>生：生活、生長、生日</li>
-                    </ul>
-                </div>
-                
-                <div class="character-group">
-                    <h3><i class="fas fa-exchange-alt"></i> 站 <span class="bopomofo">ㄓㄢˋ</span> vs 貼 <span class="bopomofo">ㄊㄧㄝ</span></h3>
-                    <ul>
-                        <li>站：站立、車站、網站</li>
-                        <li>贴：貼紙、黏貼、貼心</li>
-                    </ul>
-                </div>
-                
-                <div class="character-group">
-                    <h3><i class="fas fa-exchange-alt"></i> 頂 <span class="bopomofo">ㄉㄧㄥˇ</span> vs 頭 <span class="bopomofo">ㄊㄡˊ</span></h3>
-                    <ul>
-                        <li>頂：屋頂、山頂、頂端</li>
-                        <li>頭：頭髮、開頭、頭腦</li>
-                    </ul>
-                </div>
-                
-                <div class="character-group">
-                    <h3><i class="fas fa-exchange-alt"></i> 哪 <span class="bopomofo">ㄋㄚˇ</span> vs 那 <span class="bopomofo">ㄋㄚˋ</span></h3>
-                    <ul>
-                        <li>哪：哪裡、哪有、哪個</li>
-                        <li>那：那天、那邊、那個</li>
-                    </ul>
-                </div>
-                
-                <div class="character-group">
-                    <h3><i class="fas fa-exchange-alt"></i> 才 <span class="bopomofo">ㄘㄞˊ</span> vs 木 <span class="bopomofo">ㄇㄨˋ</span></h3>
-                    <ul>
-                        <li>才：剛才、天才、才能</li>
-                        <li>木：樹木、木板、木頭</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        
-        <section>
-            <h2><span class="section-icon">4</span> 多音字比較</h2>
-            <div class="polyphonic-characters">
-                <div class="character-group">
-                    <h3><i class="fas fa-exchange-alt"></i> 教 <span class="bopomofo">ㄐㄧㄠˋ</span> vs 教 <span class="bopomofo">ㄐㄧㄠ</span></h3>
-                    <ul>
-                        <li>教 (ㄐㄧㄠˋ)：教導、教誨 - 教育、教師</li>
-                        <li>教 (ㄐㄧㄠˋ)：指宗教 - 佛教、教會</li>
-                        <li>教 (ㄐㄧㄠˋ)：禮儀、規矩 - 家教、教養</li>
-                        <li>教 (ㄐㄧㄠ)：傳授 - 教書、教學</li>
-                    </ul>
-                </div>
-                
-                <div class="character-group">
-                    <h3><i class="fas fa-exchange-alt"></i> 倒 <span class="bopomofo">ㄉㄠˇ</span> vs 倒 <span class="bopomofo">ㄉㄠˋ</span></h3>
-                    <ul>
-                        <li>倒 (ㄉㄠˇ)：由直立而橫躺 - 跌倒、摔倒</li>
-                        <li>倒 (ㄉㄠˇ)：崩塌 - 沖倒、倒塌</li>
-                        <li>倒 (ㄉㄠˇ)：生意失敗 - 倒閉、倒店</li>
-                        <li>倒 (ㄉㄠˋ)：傾倒出來 - 倒垃圾、倒茶</li>
-                        <li>倒 (ㄉㄠˋ)：方向相反 - 倒掛、倒立</li>
-                        <li>倒 (ㄉㄠˋ)：向後退 - 倒退、倒車</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        
-        <section>
-            <h2><span class="section-icon">5</span> 同音字比較</h2>
-            <div class="homophones">
-                <div class="character-group">
-                    <h3><i class="fas fa-exchange-alt"></i> 室 <span class="bopomofo">ㄕˋ</span> vs 事 <span class="bopomofo">ㄕˋ</span> vs 是 <span class="bopomofo">ㄕˋ</span> vs 試 <span class="bopomofo">ㄕˋ</span></h3>
-                    <ul>
-                        <li>室：地下室、臥室、教室</li>
-                        <li>事：本事、家事、事情</li>
-                        <li>是：是非、是否、可是</li>
-                        <li>試：考試、嘗試、試試</li>
-                    </ul>
                 </div>
             </div>
         </section>
@@ -521,7 +528,7 @@
                     <p>注音：<span id="char-bopomofo" class="bopomofo">ㄆㄚˊ</span></p>
                     <p>部首：<span id="char-radical">爪</span></p>
                     <p>筆畫：<span id="char-strokes">8</span> 畫</p>
-                    <p>結構：<span id="char-structure">半包圍結構</span></p>
+                    <p>結構：<span id="char-structure">左右結構</span></p>
                 </div>
             </div>
             
@@ -529,396 +536,464 @@
                 <div class="info-section">
                     <h3><i class="fas fa-pen-nib"></i> 造詞</h3>
                     <ul id="char-words">
+                        <li>爬梯子</li>
                         <li>爬山</li>
                         <li>爬行</li>
-                        <li>爬蟲</li>
-                        <li>爬梯</li>
-                        <li>攀爬</li>
                     </ul>
                 </div>
                 
                 <div class="info-section">
-                    <h3><i class="fas fa-language"></i> 成語</h3>
+                    <h3><i class="fas fa-book"></i> 成語</h3>
                     <ul id="char-idioms">
-                        <li>爬羅剔抉</li>
-                        <li>連滾帶爬</li>
                         <li>爬梳剔抉</li>
+                        <li>連爬帶滾</li>
+                        <li>爬羅剔抉</li>
                     </ul>
                 </div>
                 
                 <div class="info-section">
-                    <h3><i class="fas fa-comment-alt"></i> 造句範例</h3>
+                    <h3><i class="fas fa-comment"></i> 造句</h3>
                     <ul id="char-sentences">
-                        <li>週末我們全家去<span class="highlight">爬</span>山，欣賞美麗的風景。</li>
-                        <li>烏龜在地上緩慢地<span class="highlight">爬</span>行。</li>
-                        <li>小孩子喜歡<span class="highlight">爬</span>來<span class="highlight">爬</span>去地探索世界。</li>
+                        <li>小孩子喜歡<strong>爬</strong>梯子玩耍。</li>
+                        <li>周末我們全家去<strong>爬</strong>山。</li>
                     </ul>
                 </div>
                 
                 <div class="info-section">
-                    <h3><i class="fas fa-lightbulb"></i> 字義解釋</h3>
+                    <h3><i class="fas fa-lightbulb"></i> 字義</h3>
                     <ul id="char-meaning">
-                        <li>手腳並用向前移動</li>
-                        <li>向上攀登</li>
-                        <li>伏地而行</li>
-                        <li>比喻努力向上</li>
+                        <li>手腳並用向上移動</li>
+                        <li>攀登</li>
+                        <li>伏地前行</li>
                     </ul>
                 </div>
             </div>
             
             <div class="external-links">
-                <a href="https://pedia.cloud.edu.tw/Entry/Detail/?title=爬" class="external-link" target="_blank" id="edu-link">
-                    <i class="fas fa-external-link-alt"></i> 教育百科 - 爬
-                </a>
-                <a href="https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=爬" class="external-link" target="_blank" id="idiom-link">
-                    <i class="fas fa-external-link-alt"></i> 成語典 - 爬相關成語
-                </a>
+                <a href="https://pedia.cloud.edu.tw/Entry/Detail/?title=爬" class="external-link" target="_blank">教育百科</a>
+                <a href="https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=爬" class="external-link" target="_blank">成語典</a>
             </div>
         </section>
         
-        <a href="#" class="download-btn"><i class="fas fa-download"></i> 下載學習資料</a>
-              <a href="https://cat87031.github.io/chinese3/" class="external-link" target="_blank" id="idiom-link">
-                    <i class="fas fa-external-link-alt"></i> 第三課：勇氣樹
-                </a>
+        <section id="similar-characters">
+            <h2><span class="section-icon">3</span> 形近字比較</h2>
+            <div class="similar-characters">
+                <div class="character-group">
+                    <h3>梯 <span class="bopomofo">ㄊㄧ</span></h3>
+                    <ul>
+                        <li>第 <span class="bopomofo">ㄉㄧˋ</span> - 第二、第幾</li>
+                        <li>弟 <span class="bopomofo">ㄉㄧˋ</span> - 弟弟、兄弟</li>
+                        <li>涕 <span class="bopomofo">ㄊㄧˋ</span> - 鼻涕、涕淚</li>
+                    </ul>
+                </div>
+                
+                <div class="character-group">
+                    <h3>身 <span class="bopomofo">ㄕㄣ</span></h3>
+                    <ul>
+                        <li>生 <span class="bopomofo">ㄕㄥ</span> - 生活、生長</li>
+                        <li>聲 <span class="bopomofo">ㄕㄥ</span> - 聲音、聲響</li>
+                        <li>伸 <span class="bopomofo">ㄕㄣ</span> - 伸手、伸展</li>
+                    </ul>
+                </div>
+                
+                <div class="character-group">
+                    <h3>站 <span class="bopomofo">ㄓㄢˋ</span></h3>
+                    <ul>
+                        <li>貼 <span class="bopomofo">ㄊㄧㄝ</span> - 貼紙、黏貼</li>
+                        <li>佔 <span class="bopomofo">ㄓㄢˋ</span> - 佔據、佔有</li>
+                        <li>戰 <span class="bopomofo">ㄓㄢˋ</span> - 戰爭、戰鬥</li>
+                    </ul>
+                </div>
+                
+                <div class="character-group">
+                    <h3>頂 <span class="bopomofo">ㄉㄧㄥˇ</span></h3>
+                    <ul>
+                        <li>頭 <span class="bopomofo">ㄊㄡˊ</span> - 頭髮、開頭</li>
+                        <li>項 <span class="bopomofo">ㄒㄧㄤˋ</span> - 項目、事項</li>
+                        <li>顏 <span class="bopomofo">ㄧㄢˊ</span> - 顏色、顏料</li>
+                    </ul>
+                </div>
+                
+                <div class="character-group">
+                    <h3>哪 <span class="bopomofo">ㄋㄚˇ</span></h3>
+                    <ul>
+                        <li>那 <span class="bopomofo">ㄋㄚˋ</span> - 那天、那邊</li>
+                        <li>娜 <span class="bopomofo">ㄋㄚˋ</span> - 安娜、娜娜</li>
+                        <li>挪 <span class="bopomofo">ㄋㄨㄛˊ</span> - 挪動、挪移</li>
+                    </ul>
+                </div>
+                
+                <div class="character-group">
+                    <h3>才 <span class="bopomofo">ㄘㄞˊ</span></h3>
+                    <ul>
+                        <li>木 <span class="bopomofo">ㄇㄨˋ</span> - 樹木、木板</li>
+                        <li>材 <span class="bopomofo">ㄘㄞˊ</span> - 材料、木材</li>
+                        <li>寸 <span class="bopomofo">ㄘㄨㄣˋ</span> - 尺寸、寸步</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="polyphonic-characters">
+            <h2><span class="section-icon">4</span> 多音字比較</h2>
+            <div class="polyphonic-characters">
+                <div class="character-group">
+                    <h3>待</h3>
+                    <ul>
+                        <li>待 <span class="bopomofo">ㄉㄞˋ</span> - 等待、待命</li>
+                        <li>待 <span class="bopomofo">ㄉㄞ</span> - 待不住、待一會兒</li>
+                    </ul>
+                </div>
+                
+                <div class="character-group">
+                    <h3>哪</h3>
+                    <ul>
+                        <li>哪 <span class="bopomofo">ㄋㄚˇ</span> - 哪裡、哪兒（疑問詞）</li>
+                        <li>哪 <span class="bopomofo">ㄋㄚˊ</span> - 哪吒（人名）</li>
+                        <li>哪 <span class="bopomofo">˙ㄋㄚ</span> - 天哪！（感嘆詞）</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="vocabulary-phrases">
+            <h2><span class="section-icon">5</span> 語詞學習</h2>
+            <div class="vocabulary-recognition">
+                <div class="recognition-list">
+                    <div class="recognition-item">
+                        <h3>梯子</h3>
+                        <p><span class="bopomofo">ㄊㄧ ˙ㄗ</span></p>
+                    </div>
+                    <div class="recognition-item">
+                        <h3>白紙</h3>
+                        <p><span class="bopomofo">ㄅㄞˊ ㄓˇ</span></p>
+                    </div>
+                    <div class="recognition-item">
+                        <h3>好像</h3>
+                        <p><span class="bopomofo">ㄏㄠˇ ㄒㄧㄤˋ</span></p>
+                    </div>
+                    <div class="recognition-item">
+                        <h3>身高</h3>
+                        <p><span class="bopomofo">ㄕㄣ ㄍㄠ</span></p>
+                    </div>
+                    <div class="recognition-item">
+                        <h3>生日</h3>
+                        <p><span class="bopomofo">ㄕㄥ ㄖˋ</span></p>
+                    </div>
+                    <div class="recognition-item">
+                        <h3>迫不及待</h3>
+                        <p><span class="bopomofo">ㄆㄛˋ ㄅㄨˋ ㄐㄧˊ ㄉㄞˋ</span></p>
+                    </div>
+                    <div class="recognition-item">
+                        <h3>頭頂</h3>
+                        <p><span class="bopomofo">ㄊㄡˊ ㄉㄧㄥˇ</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <a href="#" class="download-btn"><i class="fas fa-download"></i> 下載完整教學資源</a>
     </div>
 
     <script>
         // 生字資料庫
         const characterData = {
-         '爬': {
-                words: ['爬山', '爬行', '爬蟲', '爬梯', '攀爬'],
-                idioms: ['爬羅剔抉', '連滾帶爬', '爬梳剔抉'],
+            '爬': {
+                words: ['爬梯子', '爬山', '爬行', '爬蟲', '攀爬'],
+                idioms: ['爬梳剔抉', '連爬帶滾', '爬羅剔抉'],
                 sentences: [
-                    '週末我們全家去<span class="highlight">爬</span>山，欣賞美麗的風景。',
-                    '烏龜在地上緩慢地<span class="highlight">爬</span>行。',
-                    '小孩子喜歡<span class="highlight">爬</span>來<span class="highlight">爬</span>去地探索世界。'
+                    '小孩子喜歡<strong>爬</strong>梯子玩耍。',
+                    '周末我們全家去<strong>爬</strong>山。'
                 ],
                 meaning: [
-                    '手腳並用向前移動',
-                    '向上攀登',
-                    '伏地而行',
-                    '比喻努力向上'
+                    '手腳並用向上移動',
+                    '攀登',
+                    '伏地前行'
                 ],
                 eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=爬',
                 idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=爬'
             },
             '梯': {
-                words: ['樓梯', '梯子', '階梯', '電梯', '雲梯'],
-                idioms: ['梯山航海', '梯榮階祿', '梯愚入聖'],
+                words: ['梯子', '樓梯', '階梯', '電梯', '雲梯'],
+                idioms: ['梯山航海', '梯榮階祿', '上樓去梯'],
                 sentences: [
-                    '我每天爬<span class="highlight">梯</span>子上閣樓拿東西。',
-                    '這棟大樓有兩部電<span class="highlight">梯</span>。',
-                    '學習是成功的階<span class="highlight">梯</span>。'
+                    '房門上貼了一張畫有<strong>梯</strong>子的白紙。',
+                    '我們走樓<strong>梯</strong>上樓吧。'
                 ],
                 meaning: [
-                    '登高用的器具或設備',
+                    '登高用的器具',
                     '形狀像梯子的',
-                    '階級、等級',
-                    '憑藉、依靠'
+                    '階級、等級'
                 ],
                 eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=梯',
                 idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=梯'
             },
             '紙': {
-                words: ['紙張', '紙條', '紙盒', '紙飛機', '報紙'],
-                idioms: ['紙上談兵', '紙醉金迷', '一紙空文', '洛陽紙貴', '白紙黑字'],
+                words: ['白紙', '紙張', '紙條', '報紙', '紙巾'],
+                idioms: ['紙上談兵', '一紙空文', '洛陽紙貴', '力透紙背'],
                 sentences: [
-                    '我用彩色<span class="highlight">紙</span>做了一架飛機。',
-                    '老師發給每人一張<span class="highlight">紙</span>考試。',
-                    '這本書的<span class="highlight">紙</span>質很好，摸起來很舒服。'
+                    '媽媽在<strong>紙</strong>上畫了身高線。',
+                    '這張<strong>紙</strong>很適合畫畫。'
                 ],
                 meaning: [
-                    '用植物纖維製成的薄片',
-                    '文件、文書',
-                    '量詞，用於文件、書信',
-                    '紙質的、紙做的'
+                    '用植物纖維製成的書寫材料',
+                    '量詞，用於書信、文件',
+                    '紙質的'
                 ],
                 eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=紙',
                 idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=紙'
             },
             '條': {
-                words: ['條紋', '條件', '條理', '條約', '麵條'],
-                idioms: ['有條不紊', '井井有條', '慢條斯理', '科條例舉', '金科玉條'],
+                words: ['條線', '條紋', '條件', '條理', '條約'],
+                idioms: ['有條不紊', '井井有條', '慢條斯理', '一條龍'],
                 sentences: [
-                   '斑馬身上有黑白相間的<span class="highlight">條</span>紋。',
-                   '我們要學會把事情整理得井井有<span class="highlight">條</span>。',
-                   '這份合約的<span class="highlight">條</span>款需要仔細閱讀。'
-               ],
+                    '紙上有一條又一條的線。',
+                    '這件衣服有漂亮的條<strong>條</strong>紋。'
+                ],
                 meaning: [
-                     '細長的形狀或東西',
-                     '項目、款項',
-                     '次序、層次',
-                     '量詞，用於細長的東西'
+                    '細長的東西',
+                    '項目、款項',
+                    '量詞，用於細長的東西'
                 ],
                 eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=條',
                 idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=條'
             },
-          '線': {
-                  words: ['直線', '線條', '路線', '線索', '電線'],
-                  idioms: ['一線希望', '穿針引線', '飛針走線', '一線生機', '無線電波'],
-                   sentences: [
-                  '請用尺畫一條直<span class="highlight">線</span>。',
-                  '警察根據<span class="highlight">線</span>索找到了失物。',
-                  '風箏的<span class="highlight">線</span>斷了，飛向了遠方。'
+            '線': {
+                words: ['線條', '直線', '曲線', '路線', '線索'],
+                idioms: ['一線生機', '穿針引線', '一線希望', '無線電'],
+                sentences: [
+                    '紙上畫了一條條的<strong>線</strong>。',
+                    '這條<strong>線</strong>畫得很直。'
                 ],
-                 meaning: [
+                meaning: [
                     '細長的絲狀物',
-                    '幾何學中的基本概念',
-                    '途徑、方法',
-                    '邊界、界限'
+                    '幾何學上的線',
+                    '路線、途徑'
                 ],
                 eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=線',
                 idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=線'
-             },
-'像': {
-    words: ['好像', '圖像', '肖像', '像樣', '雕像'],
-    idioms: ['像模像樣', '畫像逼真', '塑像栩栩如生', '音容笑貌如在眼前'],
-    sentences: [
-        '天上的雲<span class="highlight">像</span>棉花糖一樣柔軟。',
-        '這張畫<span class="highlight">像</span>畫得真逼真。',
-        '他長得很<span class="highlight">像</span>他的父親。'
-    ],
-    meaning: [
-        '相似、類似',
-        '圖形、畫像',
-        '比如、例如',
-        '似乎、好像'
-    ],
-    eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=像',
-    idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=像'
-},
-'身': {
-    words: ['身體', '身高', '身份', '身邊', '身影'],
-    idioms: ['身強體壯', '挺身而出', '身臨其境', '身不由己', '大顯身手'],
-    sentences: [
-        '我們要好好照顧自己的<span class="highlight">身</span>體。',
-        '他的<span class="highlight">身</span>高已經超過爸爸了。',
-        '老師的<span class="highlight">身</span>影出現在教室門口。'
-    ],
-    meaning: [
-        '人或動物的軀體',
-        '自己、本身',
-        '地位、身份',
-        '生命、一生'
-    ],
-    eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=身',
-    idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=身'
-},
-'生': {
-    words: ['生活', '生日', '生長', '生命', '學生'],
-    idioms: ['生龍活虎', '栩栩如生', '妙筆生花', '生不逢時', '生生不息'],
-    sentences: [
-        '我們要學會獨立<span class="highlight">生</span>活。',
-        '今天是我的<span class="highlight">生</span>日，我很快樂。',
-        '植物需要陽光才能<span class="highlight">生</span>長。'
-    ],
-    meaning: [
-        '出生、誕生',
-        '活著、生存',
-        '產生、發生',
-        '不熟悉、不熟練'
-    ],
-    eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=生',
-    idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=生'
-},
-'迫': {
-    words: ['迫切', '迫使', '壓迫', '逼迫', '迫近'],
-    idioms: ['迫不及待', '迫在眉睫', '從容不迫', '饥寒交迫', '威迫利誘'],
-    sentences: [
-        '我<span class="highlight">迫</span>不及待地想打開生日禮物。',
-        '考試日期<span class="highlight">迫</span>近，要加緊複習。',
-        '他受到壞人的<span class="highlight">迫</span>害，需要幫助。'
-    ],
-    meaning: [
-        '緊急、急迫',
-        '強制、逼迫',
-        '接近、靠近',
-        '壓制、壓迫'
-    ],
-    eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=迫',
-    idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=迫'
-},
-'及': {
-    words: ['及時', '及格', '以及', '普及', '來不及'],
-    idioms: ['迫不及待', '望塵莫及', '觸手可及', '過猶不及', '措手不及'],
-    sentences: [
-        '我們要<span class="highlight">及</span>時完成作業，不要拖延。',
-        '這次考試我剛好<span class="highlight">及</span>格，下次要更努力。',
-        '雨下得太突然，我們都來<span class="highlight">及</span>躲雨。'
-    ],
-    meaning: [
-        '達到、夠得上',
-        '趁著、趁早',
-        '和、與',
-        '趕上、追上'
-    ],
-    eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=及',
-    idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=及'
-},
-'待': {
-    words: ['等待', '待遇', '招待', '待命', '待客'],
-    idioms: ['待價而沽', '嚴陣以待', '以逸待勞', '拭目以待', '迫不及待'],
-    sentences: [
-        '我在車站等<span class="highlight">待</span>朋友的到來。',
-        '他迫不及<span class="highlight">待</span>地想打開生日禮物。',
-        '這家餐廳的<span class="highlight">待</span>客之道很好。'
-    ],
-    meaning: [
-        '等候',
-        '對待、待遇',
-        '招待、款待',
-        '將要、打算'
-    ],
-    eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=待',
-    idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=待'
-},
-'沿': {
-    words: ['沿途', '沿海', '沿路', '沿着', '沿線'],
-    idioms: ['相沿成習', '沿波討源', '沿門托缽', '沿流溯源'],
-    sentences: [
-        '<span class="highlight">沿</span>途的風景很美，我們拍了很多照片。',
-        '我們<span class="highlight">沿</span>著河邊散步，很舒服。',
-        '<span class="highlight">沿</span>海地區經常有颱風。'
-    ],
-    meaning: [
-        '順著、跟著',
-        '邊緣、旁邊',
-        '依照、按照',
-        '傳承、延續'
-    ],
-    eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=沿',
-    idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=沿'
-},
-'站': {
-    words: ['車站', '站立', '網站', '站崗', '站台'],
-    idioms: ['站穩腳跟', '鶴立雞群', '站不住腳', '巍然屹立'],
-    sentences: [
-        '我們在火車<span class="highlight">站</span>等爸爸回來。',
-        '請<span class="highlight">站</span>起來回答老師的問題。',
-        '這個網<span class="highlight">站</span>有很多學習資源。'
-    ],
-    meaning: [
-        '直立',
-        '停留的地方',
-        '為乘客上下或貨物裝卸而設的場所',
-        '網路上的服務點'
-    ],
-    eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=站',
-    idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=站'
-},
-'沿': {
-    words: ['沿途', '沿海', '沿路', '沿着', '沿線'],
-    idioms: ['相沿成習', '沿波討源', '沿門托缽', '沿流溯源'],
-    sentences: [
-        '<span class="highlight">沿</span>途的風景很美，我們拍了很多照片。',
-        '我們<span class="highlight">沿</span>著河邊散步，很舒服。',
-        '<span class="highlight">沿</span>海地區經常有颱風。'
-    ],
-    meaning: [
-        '順著、跟著',
-        '邊緣、旁邊',
-        '依照、按照',
-        '傳承、延續'
-    ],
-    eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=沿',
-    idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=沿'
-},
-'頂': {
-    words: ['屋頂', '山頂', '頂端', '頂尖', '頂替'],
-    idioms: ['頂天立地', '醍醐灌頂', '摩天礙日', '冒名頂替', '頂禮膜拜'],
-    sentences: [
-        '小鳥在<span class="highlight">頂</span>上唱歌。',
-        '我們終於爬到了山<span class="highlight">頂</span>。',
-        '他是班上的<span class="highlight">頂</span>尖學生。'
-    ],
-    meaning: [
-        '最高處',
-        '支撐、抵住',
-        '最、極',
-        '代替、冒充'
-    ],
-    eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=頂',
-    idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=頂'
-},
-'格': {
-    words: ['格子', '格鬥', '格調', '價格', '合格'],
-    idioms: ['別具一格', '格格不入', '降格以求', '格殺勿論', '格物致知'],
-    sentences: [
-        '我在筆記本上畫了很多<span class="highlight">格</span>子。',
-        '這個產品<span class="highlight">格</span>式不符合要求。',
-        '他的考試成績<span class="highlight">格</span>外優秀。'
-    ],
-    meaning: [
-        '方形的空框或框子',
-        '標準、規格',
-        '品質、風度',
-        '打、擊'
-    ],
-    eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=格',
-    idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=格'
-},
-'哪': {
-    words: ['哪裡', '哪個', '哪兒', '哪能', '哪樣'],
-    idioms: ['哪壺不開提哪壺'],
-    sentences: [
-        '你的書包在<span class="highlight">哪</span>裡？',
-        '<span class="highlight">哪</span>個是你的鉛筆盒？',
-        '天<span class="highlight">哪</span>！我忘記帶作業了。'
-    ],
-    meaning: [
-        '疑問詞，表示詢問地點或位置',
-        '疑問詞，表示選擇',
-        '用於反問，表示否定',
-        '感嘆詞，表示驚訝'
-    ],
-    eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=哪',
-    idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=哪'
-},
-'才': {
-    words: ['才能', '天才', '剛才', '才華', '才藝'],
-    idioms: ['才高八斗', '德才兼備', '一表人才', '才疏學淺', '才貌雙全'],
-    sentences: [
-        '他很有音樂<span class="highlight">才</span>能，鋼彈得很好。',
-        '<span class="highlight">才</span>剛下過雨，地上還是濕的。',
-        '愛迪生是個<span class="highlight">才</span>華橫溢的發明家。'
-    ],
-    meaning: [
-        '能力、才智',
-        '剛剛、剛才',
-        '僅僅、只',
-        '表示強調'
-    ],
-    eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=才',
-    idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=才'
-},
-'最': {
-    words: ['最好', '最後', '最多', '最初', '最終'],
-    idioms: ['最為重要', '至高無上', '最初階段', '最後通牒', '最終目的'],
-    sentences: [
-        '媽媽做的菜是世界上最<span class="highlight">最</span>好吃的。',
-        '<span class="highlight">最</span>後一名同學請關燈。',
-        '這是我<span class="highlight">最</span>喜歡的玩具。'
-    ],
-    meaning: [
-        '極、無比',
-        '居首位的',
-        '表示程度達到極點',
-        '總結、最終'
-    ],
-    eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=最',
-    idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=最'
-}
-            // 其他生字資料可以繼續添加...
+            },
+            '像': {
+                words: ['好像', '圖像', '肖像', '像樣', '影像'],
+                idioms: ['像模像樣', '像心像意', '像煞有介事'],
+                sentences: [
+                    '紙上的線<strong>像</strong>長長的梯子。',
+                    '他畫的<strong>像</strong>很逼真。'
+                ],
+                meaning: [
+                    '相似、類似',
+                    '圖像、畫像',
+                    '比如、例如'
+                ],
+                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=像',
+                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=像'
+            },
+            '身': {
+                words: ['身高', '身體', '身份', '身邊', '身影'],
+                idioms: ['身強力壯', '身臨其境', '挺身而出', '身體力行'],
+                sentences: [
+                    '這是我們家人的<strong>身</strong>高線。',
+                    '我們要照顧好自己的<strong>身</strong>體。'
+                ],
+                meaning: [
+                    '人或動物的軀體',
+                    '自己、本身',
+                    '地位、身份'
+                ],
+                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=身',
+                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=身'
+            },
+            '生': {
+                words: ['生日', '生活', '生長', '生命', '學生'],
+                idioms: ['生龍活虎', '生生不息', '妙筆生花', '栩栩如生'],
+                sentences: [
+                    '<strong>生</strong>日那天，我迫不及待地量身高。',
+                    '我們要珍惜<strong>生</strong>命。'
+                ],
+                meaning: [
+                    '出生、誕生',
+                    '活著、有生命的',
+                    '不熟的、未經加工的'
+                ],
+                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=生',
+                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=生'
+            },
+            '迫': {
+                words: ['迫切', '迫使', '迫近', '壓迫', '逼迫'],
+                idioms: ['迫不及待', '迫在眉睫', '從容不迫', '貧病交迫'],
+                sentences: [
+                    '我<strong>迫</strong>不及待地站在身高線前面。',
+                    '時間<strong>迫</strong>近，我們要加快速度。'
+                ],
+                meaning: [
+                    '緊急、急切',
+                    '強逼、強制',
+                    '接近、逼近'
+                ],
+                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=迫',
+                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=迫'
+            },
+            '及': {
+                words: ['及時', '以及', '涉及', '普及', '來不及'],
+                idioms: ['迫不及待', '望塵莫及', '措手不及', '過猶不及'],
+                sentences: [
+                    '我迫不<strong>及</strong>待地站在身高線前面。',
+                    '我們要<strong>及</strong>時完成作業。'
+                ],
+                meaning: [
+                    '達到、趕上',
+                    '和、與',
+                    '趁著'
+                ],
+                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=及',
+                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=及'
+            },
+            '待': {
+                words: ['等待', '待命', '待遇', '待客', '待會兒'],
+                idioms: ['迫不及待', '嚴陣以待', '以逸待勞', '守株待兔'],
+                sentences: [
+                    '我迫不及待地站在身高線前面。',
+                    '請稍<strong>待</strong>片刻。'
+                ],
+                meaning: [
+                    '等候',
+                    '對待、招待',
+                    '將要、打算'
+                ],
+                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=待',
+                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=待'
+            },
+            '站': {
+                words: ['站立', '車站', '網站', '站崗', '站穩'],
+                idioms: ['站穩腳跟', '站不住腳', '網站設計'],
+                sentences: [
+                    '我迫不及待地<strong>站</strong>在身高線前面。',
+                    '我們在火車<strong>站</strong>等車。'
+                ],
+                meaning: [
+                    '直立',
+                    '停留、停靠',
+                    '為乘客上下或貨物裝卸而設的地方'
+                ],
+                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=站',
+                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=站'
+            },
+            '沿': {
+                words: ['沿著', '沿途', '沿路', '沿線', '沿海'],
+                idioms: ['相沿成習', '沿波討源', '沿門托缽'],
+                sentences: [
+                    '爸爸<strong>沿</strong>著我的頭頂畫一條線。',
+                    '我們<strong>沿</strong>著河邊散步。'
+                ],
+                meaning: [
+                    '順著、跟著',
+                    '邊緣',
+                    '依照舊例'
+                ],
+                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=沿',
+                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=沿'
+            },
+            '頂': {
+                words: ['頭頂', '頂端', '頂點', '屋頂', '頂級'],
+                idioms: ['頂天立地', '醍醐灌頂', '滅頂之災', '泰山壓頂'],
+                sentences: [
+                    '爸爸沿著我的頭<strong>頂</strong>畫一條線。',
+                    '山<strong>頂</strong>的風景很美。'
+                ],
+                meaning: [
+                    '最高最上的部分',
+                    '用頭支承',
+                    '最、極'
+                ],
+                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=頂',
+                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=顶'
+            },
+            '格': {
+                words: ['格子', '格線', '方格', '格局', '格調'],
+                idioms: ['別具一格', '格格不入', '降格以求', '格殺勿論'],
+                sentences: [
+                    '我又向上爬了一<strong>格</strong>。',
+                    '這件衣服有方<strong>格</strong>圖案。'
+                ],
+                meaning: [
+                    '方形的空框',
+                    '標準、法式',
+                    '品質、風度'
+                ],
+                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=格',
+                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=格'
+            },
+            '哪': {
+                words: ['哪裡', '哪兒', '哪個', '哪些', '哪能'],
+                idioms: ['哪壺不開提哪壺'],
+                sentences: [
+                    '不知道<strong>哪</strong>一天我才會爬到最高呢？',
+                    '你是<strong>哪</strong>裡人？'
+                ],
+                meaning: [
+                    '疑問詞，表示要求選擇',
+                    '任何一個',
+                    '表示反問'
+                ],
+                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=哪',
+                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=哪'
+            },
+            '才': {
+                words: ['才能', '天才', '才華', '剛才', '才幹'],
+                idioms: ['才高八斗', '一表人才', '才疏學淺', '德才兼備'],
+                sentences: [
+                    '不知道哪一天我<strong>才</strong>會爬到最高呢？',
+                    '他很有<strong>才</strong>華。'
+                ],
+                meaning: [
+                    '能力、智慧',
+                    '剛剛、剛才',
+                    '僅僅'
+                ],
+                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=才',
+                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=才'
+            },
+            '最': {
+                words: ['最高', '最好', '最後', '最初', '最終'],
+                idioms: ['最為重要', '最初階段', '最後通牒', '世界之最'],
+                sentences: [
+                    '不知道哪一天我才會爬到<strong>最</strong>高呢？',
+                    '這是<strong>最</strong>好的結果。'
+                ],
+                meaning: [
+                    '極、無比',
+                    '居首位的',
+                    '表示在某方面達到極點'
+                ],
+                eduUrl: 'https://pedia.cloud.edu.tw/Entry/Detail/?title=最',
+                idiomUrl: 'https://dict.idioms.moe.edu.tw/idiomList.jsp?idiom=最'
+            }
         };
         
         // 顯示生字詳情
-        function showCharacterDetail(character, bopomofo, radical, strokes, structure) {
+        function showCharacterDetail(event) {
+            // 獲取點擊元素的數據屬性
+            const charElement = event.currentTarget;
+            const character = charElement.getAttribute('data-char');
+            const bopomofo = charElement.getAttribute('data-bopomofo');
+            const radical = charElement.getAttribute('data-radical');
+            const strokes = charElement.getAttribute('data-strokes');
+            const structure = charElement.getAttribute('data-structure');
+            
+            // 移除所有項目的active類
+            document.querySelectorAll('.vocabulary-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // 為當前點擊的項目添加active類
+            charElement.classList.add('active');
+            
             const detailSection = document.getElementById('character-detail');
             const data = characterData[character] || {
                 words: ['詞1', '詞2', '詞3', '詞4', '詞5'],
-                idioms: ['成語1', '成語2', '成語3', '成語4', '成語5'],
-                sentences: ['例句1', '例句2', '例句3'],
-                meaning: ['字義1', '字義2', '字義3', '字義4'],
+                idioms: ['成語1', '成語2', '成語3'],
+                sentences: ['例句1', '例句2'],
+                meaning: ['字義1', '字義2', '字義3'],
                 eduUrl: 'https://pedia.cloud.edu.tw/',
                 idiomUrl: 'https://dict.idioms.moe.edu.tw/'
             };
@@ -947,7 +1022,7 @@
                 idiomsList.appendChild(li);
             });
             
-            // 更新造句列表
+            // 更新例句列表
             const sentencesList = document.getElementById('char-sentences');
             sentencesList.innerHTML = '';
             data.sentences.forEach(sentence => {
@@ -956,7 +1031,7 @@
                 sentencesList.appendChild(li);
             });
             
-            // 更新字義解釋
+            // 更新字義列表
             const meaningList = document.getElementById('char-meaning');
             meaningList.innerHTML = '';
             data.meaning.forEach(meaning => {
@@ -966,11 +1041,11 @@
             });
             
             // 更新外部連結
-            document.getElementById('edu-link').href = data.eduUrl;
-            document.getElementById('edu-link').innerHTML = '<i class="fas fa-external-link-alt"></i> 教育百科 - ' + character;
+            const eduLink = document.querySelector('.external-links a:nth-child(1)');
+            const idiomLink = document.querySelector('.external-links a:nth-child(2)');
             
-            document.getElementById('idiom-link').href = data.idiomUrl;
-            document.getElementById('idiom-link').innerHTML = '<i class="fas fa-external-link-alt"></i> 成語典 - ' + character + '相關成語';
+            eduLink.href = data.eduUrl;
+            idiomLink.href = data.idiomUrl;
             
             // 顯示詳情區塊
             detailSection.style.display = 'block';
@@ -979,9 +1054,53 @@
             detailSection.scrollIntoView({ behavior: 'smooth' });
         }
         
-        // 初始化頁面時顯示第一個生字的詳情
+        // 滾動到指定區塊
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                // 移除所有按鈕的active類
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // 為當前點擊的按鈕添加active類
+                document.querySelector(`.nav-btn[onclick="scrollToSection('${sectionId}')"]`).classList.add('active');
+                
+                // 添加高亮效果
+                section.classList.add('section-highlight');
+                
+                // 滾動到該區塊
+                section.scrollIntoView({ behavior: 'smooth' });
+                
+                // 2秒後移除高亮效果
+                setTimeout(() => {
+                    section.classList.remove('section-highlight');
+                }, 2000);
+            }
+        }
+        
+        // 初始顯示第一個生字的詳情
         document.addEventListener('DOMContentLoaded', function() {
-            showCharacterDetail('爬', 'ㄆㄚˊ', '爪', 8, '半包圍結構');
+            // 為所有生字項目添加點擊事件監聽器
+            document.querySelectorAll('.vocabulary-item').forEach(item => {
+                item.addEventListener('click', showCharacterDetail);
+            });
+            
+            // 顯示第一個生字的詳情
+            const firstCharElement = document.querySelector('.vocabulary-item');
+            if (firstCharElement) {
+                // 創建一個模擬事件對象
+                const event = { currentTarget: firstCharElement };
+                showCharacterDetail(event);
+            }
+            
+            // 檢查URL中是否有錨點
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                setTimeout(() => {
+                    scrollToSection(targetId);
+                }, 500);
+            }
         });
     </script>
 </body>
